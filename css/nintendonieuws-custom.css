@@ -512,7 +512,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#de0000', end
     -o-filter: blur(7px) saturate(2);
     -ms-filter: blur(7px) saturate(2); 
     filter: blur(7px) saturate(2);
-}
+    }
 }
 
 /* bbpress */
@@ -628,8 +628,9 @@ div#mce-responses{
 
 @media only screen and (max-width: 1024px) {
 
-#upprev_box{
-    display: none;
+    #upprev_box{
+        display: none;
+    }
 }
 
 /*Social  Pug icons */
@@ -670,10 +671,10 @@ div#mce-responses{
     margin-bottom: 0px;
     position: fixed;
     overflow: hidden;
-    background-color: #f1f1f1;
+    /*background-color: #f1f1f1;*/
     content: "";
     display: block;
-    top: 75px;
+    /*top: 75px;*/
     z-index: 100;
 }
 
@@ -681,7 +682,7 @@ div#mce-responses{
 .KW_progressBar {
     width: 0%;
     height: 100%;
-    z-index: 99;
+    z-index: 999;
     max-width: 100%;
     background-color: #7F3F98;
     -webkit-transition: width .6s ease;

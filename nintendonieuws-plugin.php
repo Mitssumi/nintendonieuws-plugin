@@ -382,7 +382,7 @@ function cc_progress_bar_script() {
 
 }
 
-//add_action( 'wp_enqueue_scripts', 'cc_progress_bar_script' );  
+add_action( 'wp_enqueue_scripts', 'cc_progress_bar_script' );  
 
 function cc_progress_bar(){
 
@@ -395,8 +395,7 @@ function cc_progress_bar(){
 
 }
 
-//add_action( 'genesis_after_header', 'cc_progress_bar');
-
+add_action( 'genesis_after_header', 'cc_progress_bar');
 
 //Upprev alter image used
 add_filter( 'iworks_upprev_get_the_post_thumbnail' , 'change_thumbnail' );
