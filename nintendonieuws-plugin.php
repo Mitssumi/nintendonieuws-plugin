@@ -408,5 +408,64 @@ function change_thumbnail( $image )
 	return $image;
 }
 
+function ymc_add_meta_settings($comment_id) {
+  add_comment_meta(
+    $comment_id, 
+    'mailchimp_subscribe', 
+    $_POST['mailchimp_subscribe'], 
+    true
+  );
+}
+add_action ('comment_post', 'ymc_add_meta_settings', 1);
+
+function ymc_add_subscribe_box (){
+	echo '<label for="mailchimp_subscribe"></em><input type="checkbox" name="mailchimp_subscribe" id="mailchimp_subscribe" value="1" checked="checked"> Hou mij op de hoogte <em>100% spamvrij</label>';
+}
+add_action ('comment_form', 'ymc_add_subscribe_box');
+
+function ymc_subscription_add( $comment_ID, $comment_approved, $commentdata ) {
+	ini_set('display_errors', 'On');
+	error_reporting(E_ALL);
+
+  $comment_ID = (int) $comment_ID;
+	
+  if ( !is_object($commentdata) )
+    $commentdata = get_comment($comment_ID);
+		
+  //if ( 1 === $comment_approved ) {
+    $subscribe = get_comment_meta($comment_ID, 'mailchimp_subscribe', true);
+	//if ( $subscribe == 'on' ) {
+		$apikey   = '2c0977866849c25c409196eae164427f-us15';
+		//$listid   = 'dad05ef456';
+		$endpoint   = 'https://us15.api.mailchimp.com/3.0/lists/dad05ef456/members/';
+
+		$request   = array(
+		'apikey' => $apikey,
+		//'id' => $listid,
+		'email_address' => strtolower( $commentdata->comment_author_email ),
+		'double_optin' => true,
+		'status' => 'subscribed',
+		'merge_fields' => array(
+			'FNAME' => $commentdata->comment_author,
+			'EMAIL' => strtolower( $commentdata->comment_author_email ),
+			'SIGNUP' => "comments",
+			'URL' => get_permalink($commentdata->comment_post_ID, trues)
+		)
+		);
+
+		$opts = array(
+		'headers' => array(
+			'Content-Type' => 'application/json',
+			'Authorization' => 'apikey ' . $apikey
+		),
+		'body' => json_encode($request)
+		);
+		wp_remote_post( $endpoint, $opts );
+	//}
+  //}
+}
+
+add_action('comment_post', 'ymc_subscription_add', 10 ,3);
+
 /* Stop Adding Functions Below this Line */
 ?>
