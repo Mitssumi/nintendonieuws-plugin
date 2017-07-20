@@ -435,7 +435,7 @@ function ymc_subscription_add( $comment_ID, $comment_approved, $commentdata ) {
   //if ( 1 === $comment_approved ) {
     $subscribe = get_comment_meta($comment_ID, 'mailchimp_subscribe', true);
 	//if ( $subscribe == 'on' ) {
-		$apikey   = '2c0977866849c25c409196eae164427f-us15';
+		$apikey   = '<insert key here>';
 		//$listid   = 'dad05ef456';
 		$endpoint   = 'https://us15.api.mailchimp.com/3.0/lists/dad05ef456/members/';
 
