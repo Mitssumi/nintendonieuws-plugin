@@ -449,7 +449,7 @@ function ymc_subscription_add( $comment_ID, $comment_approved, $commentdata ) {
 			'FNAME' => $commentdata->comment_author,
 			'EMAIL' => strtolower( $commentdata->comment_author_email ),
 			'SIGNUP' => "comments",
-			'URL' => get_permalink($commentdata->comment_post_ID, trues)
+			'URL' => get_permalink($commentdata->comment_post_ID, false)
 		)
 		);
 
