@@ -467,5 +467,8 @@ function ymc_subscription_add( $comment_ID, $comment_approved, $commentdata ) {
 
 add_action('comment_post', 'ymc_subscription_add', 10 ,3);
 
+//* Display author box on single posts
+add_filter( 'get_the_author_genesis_author_box_single', '__return_true' );
+
 /* Stop Adding Functions Below this Line */
 ?>
