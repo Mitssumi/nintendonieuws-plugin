@@ -689,3 +689,8 @@ div#mce-responses{
     -o-transition: width .6s ease;
     transition: width .6s ease;
 }
+
+/* Authorbox */
+.after-entry, .archive-description, .author-box{
+    background-color: #f7f7f7;
+}
